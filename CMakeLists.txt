@@ -1,15 +1,9 @@
-# Generated Cmake Pico project file
-
 cmake_minimum_required(VERSION 3.13)
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# Initialise pico_sdk from installed location
-# (note this can come from environment, CMake cache etc)
-
-# == DO NOT EDIT THE FOLLOWING LINES for the Raspberry Pi Pico VS Code Extension to work ==
 if(WIN32)
     set(USERHOME $ENV{USERPROFILE})
 else()
@@ -22,52 +16,40 @@ set(picoVscode ${USERHOME}/.pico-sdk/cmake/pico-vscode.cmake)
 if (EXISTS ${picoVscode})
     include(${picoVscode})
 endif()
-# ====================================================================================
 set(PICO_BOARD pico_w CACHE STRING "Board type")
 
-# Pull in Raspberry Pi Pico SDK (must be before project)
 include(pico_sdk_import.cmake)
 
-project(EmbarcaTech-UN4 C CXX ASM)
+project(Projeto-matriz-contagem C CXX ASM)
 
-# Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
-# Add executable. Default name is the project name, version 0.1
+add_executable(Projeto-matriz-contagem Projeto-matriz-contagem.c )
 
-add_executable(EmbarcaTech-UN4 EmbarcaTech-UN4.c )
+pico_set_program_name(Projeto-matriz-contagem "Projeto-matriz-contagem")
+pico_set_program_version(Projeto-matriz-contagem "0.1")
 
-pico_set_program_name(EmbarcaTech-UN4 "EmbarcaTech-UN4")
-pico_set_program_version(EmbarcaTech-UN4 "0.1")
+pico_enable_stdio_uart(Projeto-matriz-contagem 0)
+pico_enable_stdio_usb(Projeto-matriz-contagem 1)
 
-# Generate PIO header
-pico_generate_pio_header(EmbarcaTech-UN4 ${CMAKE_CURRENT_LIST_DIR}/blink.pio)
+pico_generate_pio_header(Projeto-matriz-contagem ${CMAKE_CURRENT_LIST_DIR}/Projeto-matriz-contagem.pio)
 
-# Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(EmbarcaTech-UN4 0)
-pico_enable_stdio_usb(EmbarcaTech-UN4 0)
+target_sources(Projeto-matriz-contagem PRIVATE Projeto-matriz-contagem.c)
 
-# Add the standard library to the build
-target_link_libraries(EmbarcaTech-UN4
-        pico_stdlib)
+target_link_libraries(Projeto-matriz-contagem
+        pico_stdlib
+        hardware_pio
+        pico_bootrom
+        hardware_pwm
+        )
 
-# Add the standard include files to the build
-target_include_directories(EmbarcaTech-UN4 PRIVATE
+target_include_directories(Projeto-matriz-contagem PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}
 )
 
-# Add any user requested libraries
-target_link_libraries(EmbarcaTech-UN4 
-        hardware_spi
-        hardware_i2c
-        hardware_dma
-        hardware_pio
-        hardware_interp
-        hardware_timer
-        hardware_watchdog
-        hardware_clocks
+target_link_libraries(Projeto-matriz-contagem 
         
         )
 
-pico_add_extra_outputs(EmbarcaTech-UN4)
+pico_add_extra_outputs(Projeto-matriz-contagem)
 
