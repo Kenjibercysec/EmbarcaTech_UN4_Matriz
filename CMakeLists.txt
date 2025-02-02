@@ -20,36 +20,41 @@ set(PICO_BOARD pico_w CACHE STRING "Board type")
 
 include(pico_sdk_import.cmake)
 
-project(Projeto-matriz-contagem C CXX ASM)
+project(EmbarcaTech-UN4 C CXX ASM)
 
 pico_sdk_init()
 
-add_executable(Projeto-matriz-contagem Projeto-matriz-contagem.c )
+add_executable(EmbarcaTech-UN4 EmbarcaTech-UN4.c )
 
-pico_set_program_name(Projeto-matriz-contagem "Projeto-matriz-contagem")
-pico_set_program_version(Projeto-matriz-contagem "0.1")
+pico_set_program_name(EmbarcaTech-UN4 "EmbarcaTech-UN4")
+pico_set_program_version(EmbarcaTech-UN4 "0.1")
 
-pico_enable_stdio_uart(Projeto-matriz-contagem 0)
-pico_enable_stdio_usb(Projeto-matriz-contagem 1)
+pico_enable_stdio_uart(EmbarcaTech-UN4 0)
+pico_enable_stdio_usb(EmbarcaTech-UN4 1)
 
-pico_generate_pio_header(Projeto-matriz-contagem ${CMAKE_CURRENT_LIST_DIR}/Projeto-matriz-contagem.pio)
+pico_generate_pio_header(EmbarcaTech-UN4 ${CMAKE_CURRENT_LIST_DIR}/EmbarcaTech-UN4.pio)
 
-target_sources(Projeto-matriz-contagem PRIVATE Projeto-matriz-contagem.c)
+target_sources(EmbarcaTech-UN4 PRIVATE EmbarcaTech-UN4.c)
 
-target_link_libraries(Projeto-matriz-contagem
+target_link_libraries(EmbarcaTech-UN4
         pico_stdlib
         hardware_pio
         pico_bootrom
         hardware_pwm
         )
 
-target_include_directories(Projeto-matriz-contagem PRIVATE
+target_include_directories(EmbarcaTech-UN4 PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}
 )
 
-target_link_libraries(Projeto-matriz-contagem 
+target_link_libraries(EmbarcaTech-UN4 
         
         )
 
-pico_add_extra_outputs(Projeto-matriz-contagem)
+pico_add_extra_outputs(EmbarcaTech-UN4)
+
+// Adicione esta linha para gerar o arquivo .hex
+add_custom_command(TARGET EmbarcaTech-UN4 POST_BUILD
+    COMMAND ${CMAKE_OBJCOPY} -O ihex ${CMAKE_CURRENT_BINARY_DIR}/EmbarcaTech-UN4 ${CMAKE_CURRENT_BINARY_DIR}/EmbarcaTech-UN4.hex
+)
 
