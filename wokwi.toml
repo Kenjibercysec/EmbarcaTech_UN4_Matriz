@@ -1,4 +1,4 @@
 [wokwi]
 version = 1
-firmware = 'build/EmbarcaTech-UN4.hex'
-elf = 'build/EmbarcaTech-UN4.elf'
+firmware = 'build/Projeto-matriz-contagem.hex'
+elf = 'build/Projeto-matriz-contagem.elf'
