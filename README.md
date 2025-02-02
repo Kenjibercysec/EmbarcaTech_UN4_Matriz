@@ -1,15 +1,12 @@
 <h1 align="left">
-  <br>
-    <img width="400px" src="https://github.com/Kenjibercysec/Aula-20-01-Tarefa-1/blob/main/src/logo.png">
-  <br>
   Microcontroladores – Interrupções e Controle de LEDs
   <br>
 </h1>
-<div align="center">
+<div align="left">
 
 </div>
 
-<div align="center"> 
+<div align="left"> 
   
 Esta atividade tem como objetivo aplicar interrupções em microcontroladores utilizando a placa BitDogLab, controlando LEDs comuns e uma matriz de LEDs WS2812 (5x5). O projeto inclui a exibição de números na matriz de LEDs e a manipulação por meio de botões físicos, com tratamento de bouncing via software.
 </div>
@@ -42,7 +39,7 @@ O projeto deve cumprir os seguintes requisitos:
 5. **VS Code**: Ambiente de desenvolvimento.
 6. **Simulador Wokwi**: Para simulação do circuito.
 
-<div align="center">
+<div align="let">
     <img width="800px" src="https://github.com/Kenjibercysec/EmbarcaTech_UN4_Matriz/blob/main/image.png" />
     <p>Fig 1. Projeto no simulador.</p>
 </div>
